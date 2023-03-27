@@ -25,7 +25,7 @@ public class GetCars
 
     [FunctionName("GetCars")]
     public async Task<IActionResult> RunAsync(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "cars")]
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "cars")]
         HttpRequest req, ILogger log)
     {
         log.LogInformation("C# HTTP trigger function processed a request.");
