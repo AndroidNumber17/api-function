@@ -1,4 +1,5 @@
 
+using System;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +17,7 @@ public class Program : FunctionsStartup
     {
         var config = builder.GetContext().Configuration;
         builder.Services.AddDbContext<DataContext>(x => x.UseNpgsql(
-        config.GetConnectionString("PostgresAzure")));
+        Environment.GetEnvironmentVariable("connectionString", EnvironmentVariableTarget.Process)!));
         builder.Services.AddScoped<ICar, CarService>();
     }
 }
